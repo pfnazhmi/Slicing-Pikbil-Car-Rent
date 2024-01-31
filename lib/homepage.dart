@@ -21,70 +21,161 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24),
-        child: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 32),
-              header(),
-              const SizedBox(
-                height: 20,
+        child: SingleChildScrollView(
+          child: SafeArea(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 32),
+                header(),
+                const SizedBox(
+                  height: 20,
+                ),
+                CarouselPromo(),
+                const SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  "New year 2024 25% off promo",
+                  style: GoogleFonts.poppins(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    color: AppColor.primary,
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: IndicatorCarousel(
+                    controller: _controller,
+                    current: _current,
+                  ),
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Top vehicle",
+                      style: GoogleFonts.poppins(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          color: AppColor.primary),
+                    ),
+                    Text(
+                      "See all",
+                      style: GoogleFonts.poppins(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                          color: AppColor.textSecondary),
+                    )
+                  ],
+                ),
+                const SizedBox(
+                  height: 24,
+                ),
+                Container(
+                  height: 400, // Atur tinggi sesuai kebutuhan
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: [
+                      carCard(),
+                      SizedBox(width: 16),
+                      carCard(),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Container carCard() {
+    return Container(
+      width: 250,
+      height: 320,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(16),
+            child: Image.asset(
+              AppAsset.car1,
+              width: 220,
+              height: 190,
+              fit: BoxFit.cover,
+            ),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              "Honda City - 2019",
+              style: GoogleFonts.poppins(
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+                color: AppColor.textPrimary,
               ),
-              CarouselPromo(),
+            ),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              const Icon(
+                Icons.star,
+                color: Colors.yellow,
+              ),
               const SizedBox(
-                height: 10,
+                width: 4,
               ),
               Text(
-                "New year 2024 25% off promo",
+                "4.5",
                 style: GoogleFonts.poppins(
-                  fontSize: 16,
+                  fontSize: 12,
                   fontWeight: FontWeight.w500,
-                  color: AppColor.primary,
-                ),
-              ),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: IndicatorCarousel(
-                  controller: _controller,
-                  current: _current,
+                  color: AppColor.textPrimary,
                 ),
               ),
               const SizedBox(
-                height: 16,
+                width: 4,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Top vehicle",
-                    style: GoogleFonts.poppins(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: AppColor.primary),
-                  ),
-                  Text(
-                    "See all",
-                    style: GoogleFonts.poppins(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                        color: AppColor.textSecondary),
-                  )
-                ],
-              ),
-              const SizedBox(
-                height: 24,
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(AppAsset.car1),
-                    fit: BoxFit.cover,
-                  ),
+              Text(
+                "(124 Review)",
+                style: GoogleFonts.poppins(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w400,
+                  color: AppColor.textSecondary,
                 ),
               ),
             ],
           ),
-        ),
+          const SizedBox(
+            height: 10,
+          ),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              "Rp 450.000",
+              style: GoogleFonts.poppins(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                  color: Color(0xFF103F74)),
+            ),
+          )
+        ],
       ),
     );
   }
