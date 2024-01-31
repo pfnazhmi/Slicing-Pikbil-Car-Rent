@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pikbil_rentcar/config/app_asset.dart';
 import 'package:pikbil_rentcar/config/app_color.dart';
+import 'package:pikbil_rentcar/homepage.dart';
+import 'package:pikbil_rentcar/register_page.dart';
 import 'package:pikbil_rentcar/widget/button_custom.dart';
 
 class LoginPage extends StatefulWidget {
@@ -20,6 +22,20 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.white,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(
+            Icons.chevron_left_outlined,
+            size: 30,
+            color: AppColor.textSecondary,
+          ),
+        ),
+      ),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: SafeArea(
@@ -59,7 +75,7 @@ class _LoginPageState extends State<LoginPage> {
                 InputEmail(),
                 const SizedBox(height: 24),
                 Text(
-                  "Email address",
+                  "Password",
                   style: GoogleFonts.poppins(
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
@@ -73,7 +89,16 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(
                   height: 24,
                 ),
-                ButtonCustom(label: "Login", onTap: () {}, isExpand: true),
+                ButtonCustom(
+                  label: "Login",
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomePage()),
+                    );
+                  },
+                  isExpand: true,
+                ),
                 const SizedBox(
                   height: 20,
                 ),
@@ -151,7 +176,11 @@ class _LoginPageState extends State<LoginPage> {
                             fontWeight: FontWeight.w500,
                             color: AppColor.primary,
                           ),
-                          recognizer: TapGestureRecognizer()..onTap = () {},
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => RegisterPage()));
+                            },
                         ),
                       ],
                     ),
