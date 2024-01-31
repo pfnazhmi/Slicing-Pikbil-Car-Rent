@@ -25,13 +25,63 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 24),
+              const SizedBox(height: 32),
               header(),
               const SizedBox(
                 height: 20,
               ),
               CarouselPromo(),
-              IndicatorCarousel(controller: _controller, current: _current),
+              const SizedBox(
+                height: 10,
+              ),
+              Text(
+                "New year 2024 25% off promo",
+                style: GoogleFonts.poppins(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                  color: AppColor.primary,
+                ),
+              ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: IndicatorCarousel(
+                  controller: _controller,
+                  current: _current,
+                ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Top vehicle",
+                    style: GoogleFonts.poppins(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        color: AppColor.primary),
+                  ),
+                  Text(
+                    "See all",
+                    style: GoogleFonts.poppins(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                        color: AppColor.textSecondary),
+                  )
+                ],
+              ),
+              const SizedBox(
+                height: 24,
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(AppAsset.car1),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
             ],
           ),
         ),
@@ -62,7 +112,7 @@ class _HomePageState extends State<HomePage> {
         });
       }).toList(),
       options: CarouselOptions(
-        height: 150,
+        height: 210,
         viewportFraction: 1,
         enableInfiniteScroll: false,
         autoPlay: true,
